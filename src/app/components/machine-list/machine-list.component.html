@@ -1,11 +1,29 @@
-<div *ngIf="machines?.length > 0; else noMachines">
-  <ul *ngFor="let machine of machines" class="collection">
-    <li class="collection-item">
-      <strong>{{ machine.model }}</strong>
-    </li>
-  </ul>
+<div class="row nav-buttons">
+  <div class="center title">
+    <h3><strong>{{ title }}</strong></h3>
+  </div>
+  <div class="col sm4 right">
+    <a (click)="showSearch()" class="waves-effect waves-light btn"><i class="fa fa-home"></i></a>
+    <a (click)="showAdd()" class="waves-effect waves-light btn"><i class="fa fa-plus"></i></a>
+  </div>
 </div>
 
-<ng-template #noMachines>
-  List Loading...
-</ng-template>
+<div *ngIf="add">
+  <app-add-machine></app-add-machine>
+</div>
+
+<div *ngIf="search">
+    <input #box type="text" placeholder="Search..." class="searchFilter" (keyup)="onKey(box.value)" ng-model="inputValue">
+
+    <div *ngIf="machines?.length > 0; else noMachines">
+        <ul *ngFor="let machine of results" class="collection">
+          <li class="collection-item">
+            <strong>{{ machine.make }} {{ machine.model }}</strong>
+          </li>
+        </ul>
+      </div>
+      
+      <ng-template #noMachines>
+        List Loading...
+      </ng-template>
+</div>

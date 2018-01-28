@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Add Machine</span>
+    <form (ngSubmit)="addMachine()" class="col-s6">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Make" [(ngModel)]="machine.make" name="make">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Model" [(ngModel)]="machine.model" name="model">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Drum Unit" [(ngModel)]="machine.drumunit" name="drumunit">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Developer Unit" [(ngModel)]="machine.developerunit" name="developerunit">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Waste Toner Container" [(ngModel)]="machine.wtc" name="wtc">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Fuser Unit" [(ngModel)]="machine.fuserunit" name="fuserunit">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Image Transfer Belt" [(ngModel)]="machine.itb" name="itb">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="ITB Cleaner" [(ngModel)]="machine.itbcleaner" name="itbcleaner">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Transfer Roller / PTB" [(ngModel)]="machine.transferrollerptb" name="transferrollerptb">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Feed Rollers (Tray)" [(ngModel)]="machine.feedrollerstray" name="feedrollerstray">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Separation Roller (Tray)" [(ngModel)]="machine.separationrollertray" name="separationrollertray">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Feed Rollers (Bypass)" [(ngModel)]="machine.feedrollersbypass" name="feedrollersbypass">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="ADF Pickup" [(ngModel)]="machine.adfpickup" name="adfpickup">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="ADF Reverse/Friction" [(ngModel)]="machine.adfreversefriction" name="adfreversefriction">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="LSU" [(ngModel)]="machine.lsu" name="lsu">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Platen" [(ngModel)]="machine.platen" name="platen">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="PBA Main" [(ngModel)]="machine.pbamain" name="pbamain">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="OPE PBA" [(ngModel)]="machine.opepba" name="opepba">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="SMPS" [(ngModel)]="machine.smps" name="smps">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="HVPS" [(ngModel)]="machine.hvps" name="hvps">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="OPE" [(ngModel)]="machine.ope" name="ope">
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="HDD" [(ngModel)]="machine.hdd" name="hdd">
+        </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+              <input type="text" placeholder="Observations" [(ngModel)]="machine.observations" name="observations">
+            </div>
+      </div>
+      <input type="submit" value="submit" class="btn">
+    </form>
+  </div>
+</div>

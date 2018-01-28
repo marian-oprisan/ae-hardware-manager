@@ -1,5 +1,6 @@
 export interface Machine {
     id?: string;
+    make?: string;
     model?: string;
     drumunit?: string;
     developerunit?: string;
@@ -16,11 +17,10 @@ export interface Machine {
     lsu?: string;
     platen?: string;
     pbamain?: string;
-    opebpa?: string;
+    opepba?: string;
     smps?: string;
     hvps?: string;
     ope?: string;
     hdd?: string;
     observations?: string;
   }
-  
