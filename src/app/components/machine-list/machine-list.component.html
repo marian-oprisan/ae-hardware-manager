@@ -1,0 +1,11 @@
+<div *ngIf="machines?.length > 0; else noMachines">
+  <ul *ngFor="let machine of machines" class="collection">
+    <li class="collection-item">
+      <strong>{{ machine.model }}</strong>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noMachines>
+  List Loading...
+</ng-template>
