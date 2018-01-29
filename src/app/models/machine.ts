@@ -1,5 +1,7 @@
 export interface Machine {
     id?: string;
+    size?: string;
+    color?: string;
     make?: string;
     model?: string;
     drumunit?: string;

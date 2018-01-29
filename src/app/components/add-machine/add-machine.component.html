@@ -2,6 +2,20 @@
   <div class="card-content">
     <span class="card-title">Add Machine</span>
     <form (ngSubmit)="addMachine()" class="col-s6">
+      <div class="row radio-buttons">
+        <div class="col s6">
+            <input class="with-gap" [(ngModel)]="machine.size" name="size" value="A4" type="radio" id="a4" checked />
+            <label for="a4">A4</label>
+            <input class="with-gap" [(ngModel)]="machine.size" name="size" value ="A3" type="radio" id="a3" />
+            <label for="a3">A3</label>
+        </div>
+        <div class="col s6">
+            <input class="with-gap" [(ngModel)]="machine.color" name="color" value="Color" type="radio" id="color" checked />
+            <label for="color">Color</label>
+            <input class="with-gap" [(ngModel)]="machine.color" name="color" value="Monochrome" type="radio" id="mono" />
+            <label for="mono">Mono</label>
+        </div>
+      </div>
       <div class="row">
         <div class="input-field col s6">
           <input type="text" placeholder="Make" [(ngModel)]="machine.make" name="make">

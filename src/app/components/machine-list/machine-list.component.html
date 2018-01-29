@@ -17,13 +17,228 @@
 
     <div *ngIf="machines?.length > 0; else noMachines">
         <ul *ngFor="let machine of results" class="collection">
-          <li class="collection-item">
+          <li (dblclick)="viewStatus($event, machine)" class="collection-item">
             <strong>{{ machine.make }} {{ machine.model }}</strong>
+            <a href="#" class="secondary-content">
+              <i (click)="editMachine($event, machine)" class="fa fa-pencil"></i>
+              <i *ngIf="editState && machineToEdit.id == machine.id" (click)="clearState()" class="fa fa-compress"></i>
+            </a>
+            <div *ngIf="viewState && machineToView.id == machine.id">
+              <div class="collection">
+                <div class="collection-item center header">
+                    {{ machineToView.size }}, {{ machineToView.color }} machine
+                </div>
+              </div>
+              <table class="striped">
+                <thead>
+                  <tr>
+                      <th>Part Name</th>
+                      <th>Part Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Drum Unit</td>
+                    <td>{{ machineToView.drumunit }}</td>
+                  </tr>
+                  <tr>
+                    <td>Developer Unit</td>
+                    <td>{{ machineToView.developerunit }}</td>
+                  </tr>
+                  <tr>
+                    <td>Waste Toner Container</td>
+                    <td>{{ machineToView.wtc }}</td>
+                  </tr>
+                  <tr>
+                    <td>Fuser Unit</td>
+                    <td>{{ machineToView.fuserunit }}</td>
+                  </tr>
+                  <tr>
+                    <td>Image Transfer Belt</td>
+                    <td>{{ machineToView.itb }}</td>
+                  </tr>
+                  <tr>
+                    <td>ITB Cleaner</td>
+                    <td>{{ machineToView.itbcleaner }}</td>
+                  </tr>
+                  <tr>
+                    <td>Transfer Roller / PTB</td>
+                    <td>{{ machineToView.transferrollerptb }}</td>
+                  </tr>
+                  <tr>
+                    <td>Feed Rollers (Tray)</td>
+                    <td>{{ machineToView.feedrollerstray }}</td>
+                  </tr>
+                  <tr>
+                    <td>Separation Roller (Tray)</td>
+                    <td>{{ machineToView.separationrollertray }}</td>
+                  </tr>
+                  <tr>
+                    <td>Feed Rollers (Bypass)</td>
+                    <td>{{ machineToView.feedrollersbypass }}</td>
+                  </tr>
+                  <tr>
+                    <td>ADF Pickup</td>
+                    <td>{{ machineToView.adfpickup }}</td>
+                  </tr>
+                  <tr>
+                    <td>ADF Reverse / Friction</td>
+                    <td>{{ machineToView.adfreversefriction }}</td>
+                  </tr>
+                  <tr>
+                    <td>Laser Scanning Unit</td>
+                    <td>{{ machineToView.lsu }}</td>
+                  </tr>
+                  <tr>
+                    <td>Platen</td>
+                    <td>{{ machineToView.platen }}</td>
+                  </tr>
+                  <tr>
+                    <td>PBA Main</td>
+                    <td>{{ machineToView.pbamain }}</td>
+                  </tr>
+                  <tr>
+                    <td>OPE PBA</td>
+                    <td>{{ machineToView.opepba }}</td>
+                  </tr>
+                  <tr>
+                    <td>SMPS</td>
+                    <td>{{ machineToView.smps }}</td>
+                  </tr><tr>
+                    <td>HVPS</td>
+                    <td>{{ machineToView.hvps }}</td>
+                  </tr>
+                  <tr>
+                    <td>OPE</td>
+                    <td>{{ machineToView.ope }}</td>
+                  </tr>
+                  <tr>
+                    <td>HDD</td>
+                    <td>{{ machineToView.hdd }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="editState && machineToEdit.id == machine.id">
+              <form (ngSubmit)="updateMachine(machine)">
+                <div class="row radio-buttons">
+                  <div class="col s6">
+                      <input class="with-gap" [(ngModel)]="machine.size" name="size" value="A4" type="radio" id="a4" checked />
+                      <label for="a4">A4</label>
+                      <input class="with-gap" [(ngModel)]="machine.size" name="size" value ="A3" type="radio" id="a3" />
+                      <label for="a3">A3</label>
+                  </div>
+                  <div class="col s6">
+                      <input class="with-gap" [(ngModel)]="machine.color" name="color" value="Color" type="radio" id="color" checked />
+                      <label for="color">Color</label>
+                      <input class="with-gap" [(ngModel)]="machine.color" name="color" value="Monochrome" type="radio" id="mono" />
+                      <label for="mono">Mono</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Make" [(ngModel)]="machine.make" name="make">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Model" [(ngModel)]="machine.model" name="model">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Drum Unit" [(ngModel)]="machine.drumunit" name="drumunit">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Developer Unit" [(ngModel)]="machine.developerunit" name="developerunit">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Waste Toner Container" [(ngModel)]="machine.wtc" name="wtc">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Fuser Unit" [(ngModel)]="machine.fuserunit" name="fuserunit">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Image Transfer Belt" [(ngModel)]="machine.itb" name="itb">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="ITB Cleaner" [(ngModel)]="machine.itbcleaner" name="itbcleaner">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Transfer Roller / PTB" [(ngModel)]="machine.transferrollerptb" name="transferrollerptb">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Feed Rollers (Tray)" [(ngModel)]="machine.feedrollerstray" name="feedrollerstray">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Separation Roller (Tray)" [(ngModel)]="machine.separationrollertray" name="separationrollertray">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Feed Rollers (Bypass)" [(ngModel)]="machine.feedrollersbypass" name="feedrollersbypass">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="ADF Pickup" [(ngModel)]="machine.adfpickup" name="adfpickup">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="ADF Reverse/Friction" [(ngModel)]="machine.adfreversefriction" name="adfreversefriction">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="LSU" [(ngModel)]="machine.lsu" name="lsu">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Platen" [(ngModel)]="machine.platen" name="platen">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="PBA Main" [(ngModel)]="machine.pbamain" name="pbamain">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="OPE PBA" [(ngModel)]="machine.opepba" name="opepba">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="SMPS" [(ngModel)]="machine.smps" name="smps">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="HVPS" [(ngModel)]="machine.hvps" name="hvps">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="OPE" [(ngModel)]="machine.ope" name="ope">
+                  </div>
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="HDD" [(ngModel)]="machine.hdd" name="hdd">
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" placeholder="Observations" [(ngModel)]="machine.observations" name="observations">
+                      </div>
+                </div> 
+                <input type="submit" value="Update Machine" class="btn orange">
+                <button (click)="deleteMachine($event, item)" class="btn red">Delete Machine</button>
+              </form>
+            </div>
           </li>
         </ul>
       </div>
       
       <ng-template #noMachines>
-        List Loading...
+        <div class="card center collection">
+          <p class="collection-item">List Loading...</p>
+        </div>
       </ng-template>
 </div>

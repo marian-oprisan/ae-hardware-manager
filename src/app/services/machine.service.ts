@@ -9,6 +9,8 @@ export class MachineService {
 
   machinesCollection: AngularFirestoreCollection<Machine>;
   machines: Observable<Machine[]>;
+  machineDoc: AngularFirestoreDocument<Machine>;
+
   constructor(public afs: AngularFirestore) {
     this.machinesCollection = this.afs.collection('machines');
 
@@ -29,4 +31,15 @@ export class MachineService {
   addMachine(machine: Machine) {
     this.machinesCollection.add(machine);
   }
+
+  deleteMAchine(machine: Machine) {
+    this.machineDoc = this.afs.doc(`machines/${machine.id}`);
+    this.machineDoc.delete();
+  }
+
+  updateMachine(machine: Machine) {
+    this.machineDoc = this.afs.doc(`machines/${machine.id}`);
+    this.machineDoc.update(machine);
+  }
+
 }

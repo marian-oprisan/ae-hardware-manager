@@ -11,13 +11,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddMachineComponent } from './components/add-machine/add-machine.component';
 import { FormsModule } from '@angular/forms';
 import { ViewService } from './services/view.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MachineListComponent,
     NavbarComponent,
-    AddMachineComponent
+    AddMachineComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
