@@ -94,4 +94,11 @@ export class MachineListComponent implements OnInit {
     this.viewState = !this.viewState;
     this.machineToView = machine;
   }
+
+  deleteMachine(event, machine: Machine) {
+    if (confirm('Really remove ' + machine.make + ' ' + machine.model + '?')) {
+      this.clearState();
+      this.machineService.deleteMAchine(machine);
+    }
+  }
 }

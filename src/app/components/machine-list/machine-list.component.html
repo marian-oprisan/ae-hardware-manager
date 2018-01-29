@@ -4,6 +4,7 @@
   </div>
   <div class="col sm4 right">
     <a (click)="showSearch()" class="waves-effect waves-light btn"><i class="fa fa-home"></i></a>
+    
     <a (click)="showAdd()" class="waves-effect waves-light btn"><i class="fa fa-plus"></i></a>
   </div>
 </div>
@@ -229,7 +230,7 @@
                       </div>
                 </div> 
                 <input type="submit" value="Update Machine" class="btn orange">
-                <button (click)="deleteMachine($event, item)" class="btn red">Delete Machine</button>
+                <button (click)="deleteMachine($event, machine)" class="btn red">Delete Machine</button>
               </form>
             </div>
           </li>
@@ -237,8 +238,16 @@
       </div>
       
       <ng-template #noMachines>
-        <div class="card center collection">
-          <p class="collection-item">List Loading...</p>
-        </div>
+          <div class="preloader-wrapper active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
       </ng-template>
 </div>
