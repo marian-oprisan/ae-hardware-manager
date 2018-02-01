@@ -1,5 +1,6 @@
 export interface Machine {
     id?: string;
+    badge?: string;
     size?: string;
     color?: string;
     make?: string;

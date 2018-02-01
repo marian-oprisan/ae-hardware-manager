@@ -18,18 +18,18 @@
 
     <div *ngIf="machines?.length > 0; else noMachines">
         <ul *ngFor="let machine of results" class="collection">
-          <li (dblclick)="viewStatus($event, machine)" class="collection-item">
-            <strong>{{ machine.make }} {{ machine.model }}</strong>
+          <li class="collection-item">
+            <span (click)="viewStatus($event, machine)"><strong>{{ machine.make }} {{ machine.model }}</strong></span>
+            <span *ngIf="machine.badge" class="mbg"><strong>({{ machine.badge }})</strong></span>
             <a href="#" class="secondary-content">
               <i (click)="editMachine($event, machine)" class="fa fa-pencil"></i>
               <i *ngIf="editState && machineToEdit.id == machine.id" (click)="clearState()" class="fa fa-compress"></i>
             </a>
             <div *ngIf="viewState && machineToView.id == machine.id">
               <div class="collection">
-                <div class="collection-item center header">
-                    {{ machineToView.size }}, {{ machineToView.color }} machine
-                </div>
+            
               </div>
+              <div class="header">{{ machineToView.size }}, {{ machineToView.color }} machine</div>
               <table class="striped">
                 <thead>
                   <tr>
@@ -38,82 +38,83 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngIf="machineToView.drumunit">
                     <td>Drum Unit</td>
                     <td>{{ machineToView.drumunit }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.developerunit">
                     <td>Developer Unit</td>
                     <td>{{ machineToView.developerunit }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.wtc">
                     <td>Waste Toner Container</td>
                     <td>{{ machineToView.wtc }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.fuserunit">
                     <td>Fuser Unit</td>
                     <td>{{ machineToView.fuserunit }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.itb">
                     <td>Image Transfer Belt</td>
                     <td>{{ machineToView.itb }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.itbcleaner">
                     <td>ITB Cleaner</td>
                     <td>{{ machineToView.itbcleaner }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.transferrollerptb">
                     <td>Transfer Roller / PTB</td>
                     <td>{{ machineToView.transferrollerptb }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.feedrollerstray">
                     <td>Feed Rollers (Tray)</td>
                     <td>{{ machineToView.feedrollerstray }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.separationrollertray">
                     <td>Separation Roller (Tray)</td>
                     <td>{{ machineToView.separationrollertray }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.feedrollersbypass">
                     <td>Feed Rollers (Bypass)</td>
                     <td>{{ machineToView.feedrollersbypass }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.adfpickup">
                     <td>ADF Pickup</td>
                     <td>{{ machineToView.adfpickup }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.adfreversefriction">
                     <td>ADF Reverse / Friction</td>
                     <td>{{ machineToView.adfreversefriction }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.lsu">
                     <td>Laser Scanning Unit</td>
                     <td>{{ machineToView.lsu }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.platen">
                     <td>Platen</td>
                     <td>{{ machineToView.platen }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.pbamain">
                     <td>PBA Main</td>
                     <td>{{ machineToView.pbamain }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.opepba">
                     <td>OPE PBA</td>
                     <td>{{ machineToView.opepba }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.smps">
                     <td>SMPS</td>
                     <td>{{ machineToView.smps }}</td>
-                  </tr><tr>
+                  </tr>
+                  <tr *ngIf="machineToView.hvps">
                     <td>HVPS</td>
                     <td>{{ machineToView.hvps }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.ope">
                     <td>OPE</td>
                     <td>{{ machineToView.ope }}</td>
                   </tr>
-                  <tr>
+                  <tr *ngIf="machineToView.hdd">
                     <td>HDD</td>
                     <td>{{ machineToView.hdd }}</td>
                   </tr>

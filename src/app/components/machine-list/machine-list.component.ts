@@ -38,17 +38,32 @@ export class MachineListComponent implements OnInit {
   }
 
   onKey(value) {
+    value = value.replace(/\W/g, '');
+    this.clearState();
     this.refreshResults();
-    for (let i = 0; i < this.results.length; i++) {
-      this.counter = 0;
-      const keys = Object.keys(this.results[i]);
-      for (let j = 0; j < keys.length; j++) {
-        if (keys[j].toLowerCase().indexOf(value.toLowerCase()) > 0) {
-          this.counter++;
+    if (value === '') {
+      return;
+    } else {
+      for (let i = this.results.length - 1; i >= 0; i--) {
+        this.counter = 0;
+        const keys = Object.keys(this.results[i]);
+        for (let j = 0; j < keys.length; j++) {
+          if (keys[j].toLowerCase().replace(/\W/g, '').indexOf(value.toLowerCase()) >= 0) {
+            this.counter++;
+            continue;
+          } else if (this.results[i][keys[j]].toLowerCase().replace(/\W/g, '').indexOf(value.toLowerCase()) >= 0) {
+            this.counter++;
+            if (this.results[i][keys[j]].toLowerCase().replace(/\W/g, '') === value.toLowerCase()) {
+              this.results[i].badge = (keys[j]);
+              this.counter++;
+              continue;
+            }
+            continue;
+          }
         }
-      }
-      if (this.counter === 0) {
-        this.results.splice(i, 1);
+        if (this.counter === 0) {
+          this.results.splice(i, 1);
+        }
       }
     }
   }
@@ -90,7 +105,6 @@ export class MachineListComponent implements OnInit {
   }
 
   viewStatus(event, machine) {
-    this.clearState();
     this.viewState = !this.viewState;
     this.machineToView = machine;
   }
