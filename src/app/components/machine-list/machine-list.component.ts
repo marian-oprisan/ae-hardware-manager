@@ -76,6 +76,7 @@ export class MachineListComponent implements OnInit {
   }
 
   showSearch() {
+    this.clearState();
     this.add = false;
     this.search = true;
     this.title = '';
