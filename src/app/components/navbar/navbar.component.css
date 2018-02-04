@@ -14,15 +14,32 @@ nav {
     display: inline-block;
     margin-left: 15%;
 }
-@media only screen and (max-width : 500px)  {
+
+.logo {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+@media only screen and (max-width : 600px)  {
     .title {
         display: block;
         font-size: 1.5rem;
     }
     .brand-logo {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     .sectioned-brand {
         visibility: hidden;
+    }
+    .logo {
+        text-align: left;
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width : 600px)  {
+    .logo {
+        margin-top: 5px;
     }
 }
