@@ -3,7 +3,7 @@
     <h3><strong>{{ title }}</strong></h3>
   </div>
   <div class="col sm4 right">
-    <a (click)="showSearch()" class="waves-effect waves-light btn"><i class="fa fa-home"></i></a>
+    <a (click)="showSearch(); refreshFilters(); refreshResults()" class="waves-effect waves-light btn"><i class="fa fa-home"></i></a>
     
     <a (click)="showAdd()" class="waves-effect waves-light btn"><i class="fa fa-plus"></i></a>
   </div>
@@ -19,16 +19,16 @@
     <div class="container filter">
       <div class="row">
         <div class="col s3">
-          <a (click)="filterMachinesSize('A4')" class="waves-effect waves-teal btn-flat">A4</a>
+          <a (click)="box.value=''; setFilterSize('A4');" class="waves-effect waves-teal {{ afClass }}">A4</a>
         </div>
         <div class="col s3">
-            <a (click)="filterMachinesSize('A3')" class="waves-effect waves-teal btn-flat">A3</a>
+            <a (click)="box.value=''; setFilterSize('A3')" class="waves-effect waves-teal {{ atClass }}">A3</a>
         </div>
         <div class="col s3">
-            <a (click)="filterMachinesColor('mono')" class="waves-effect waves-teal btn-flat">B/W</a>
+            <a (click)="box.value=''; setFilterColour('Monochrome')" class="waves-effect waves-teal {{ bwClass }}">B/W</a>
         </div>
         <div class="col s3">
-          <a (click)="filterMachinesColor('color')" class="waves-effect waves-teal btn-flat">CLR</a>
+          <a (click)="box.value=''; setFilterColour('Colour')" class="waves-effect waves-teal {{ clrClass }}">CLR</a>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
               <div class="collection">
             
               </div>
-              <div class="header">{{ machineToView.size }}, {{ machineToView.color }} machine</div>
+              <div class="header">{{ machineToView.size }}, {{ machineToView.colour }} machine</div>
               <table class="striped">
                 <thead>
                   <tr>
@@ -149,9 +149,9 @@
                       <label for="a3">A3</label>
                   </div>
                   <div class="col s6">
-                      <input class="with-gap" [(ngModel)]="machine.color" name="color" value="Color" type="radio" id="color" checked />
-                      <label for="color">Color</label>
-                      <input class="with-gap" [(ngModel)]="machine.color" name="color" value="Monochrome" type="radio" id="mono" />
+                      <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Colour" type="radio" id="colour" checked />
+                      <label for="colour">Colour</label>
+                      <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Monochrome" type="radio" id="mono" />
                       <label for="mono">Mono</label>
                   </div>
                 </div>
@@ -272,6 +272,6 @@
       </ng-template>
 
       <ng-template #noResults>
-          <h5 class="teal-text">I've got nothing on that</h5>
+          <h5 class="teal-text">Nothing Found.</h5>
       </ng-template>
 </div>

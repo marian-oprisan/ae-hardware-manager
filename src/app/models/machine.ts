@@ -2,7 +2,7 @@ export interface Machine {
     id?: string;
     badge?: string;
     size?: string;
-    color?: string;
+    colour?: string;
     make?: string;
     model?: string;
     drumunit?: string;
