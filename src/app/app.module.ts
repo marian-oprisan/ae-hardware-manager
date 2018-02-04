@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 import { ViewService } from './services/view.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { CoreModule } from './core/core.module';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthService } from './core/auth.service';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
@@ -23,7 +22,7 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
     MachineListComponent,
     NavbarComponent,
     AddMachineComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

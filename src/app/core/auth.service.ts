@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
+
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -8,13 +9,13 @@ import 'rxjs/add/operator/switchMap';
 interface User {
   uid: string;
   email: string;
-  photoURL?: string;
-  displayName?: string;
-  favoriteColor?: string;
+  name: string;
 }
+
 @Injectable()
 export class AuthService {
   user: Observable<User>;
+
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore) {
       //// Get auth data, then get firestore user document || null
@@ -35,6 +36,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUserData(credential.user);
+
       });
   }
   private updateUserData(user) {
@@ -42,13 +44,12 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const data: User = {
       uid: user.uid,
-      email: user.email
+      email: user.email,
+      name: user.displayName
     };
     return userRef.set(data);
   }
   signOut() {
-    this.afAuth.auth.signOut().then(() => {
-        location.reload();
-    });
+    this.afAuth.auth.signOut();
   }
 }

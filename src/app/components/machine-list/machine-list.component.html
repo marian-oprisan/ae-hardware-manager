@@ -4,35 +4,21 @@
   </div>
   <div class="col sm4 right">
     <a (click)="showSearch(); refreshFilters(); refreshResults()" class="waves-effect waves-light btn"><i class="fa fa-home"></i></a>
-    
+    <span *ngIf="auth.user | async">
     <a (click)="showAdd()" class="waves-effect waves-light btn"><i class="fa fa-plus"></i></a>
-
-    <div *ngIf="auth.user | async; then authenticated else guest">
-        LOGIN
-    </div>
-    <div *ngIf="auth.user | async; then authenticated else guest">
-        <!-- template will replace this div -->
+    </span>
+    <span *ngIf="!(auth.user | async)">
+      <a (click)="auth.googleLogin()" class="waves-effect waves-light btn">Lo<i class="fa fa-google"></i>in</a>
+    </span>
+    <span *ngIf="auth.user | async">
+      <a (click)="auth.signOut()" class="waves-effect waves-light btn">Logout</a>
+    </span>
+  </div>
 </div>
-<!-- User NOT logged in -->
-<ng-template #guest>
-    <h3>Howdy, GUEST</h3>
-    <p>Login to get started...</p>
-    
-    <button (click)="auth.googleLogin()">
-        <i class="fa fa-google"></i> Connect Google
-    </button>
-</ng-template>
-<!-- User logged in -->
-<ng-template #authenticated>
-    <div *ngIf="auth.user | async as user">
-        <h3>Howdy, {{ user.displayName }}</h3>
-        <img  [src]="user.photoURL">
-        <p>UID: {{ user.uid }}</p>
-        <p>Favorite Color: {{ user?.favoriteColor }} </p>
-        <button (click)="auth.signOut()">Logout</button>
-    </div>
-</ng-template>
 
+<div>
+  <div *ngIf="auth.user | async as user">
+    <span class="username teal-text right">Hello, {{ user.name }}</span>
   </div>
 </div>
 
@@ -44,19 +30,11 @@
     <input #box type="text" placeholder="Search..." class="searchFilter" (keyup)="onKey(box.value)" ng-model="inputValue">
 
     <div class="container filter">
-      <div class="row">
-        <div class="col s3">
-          <a (click)="box.value=''; setFilterSize('A4');" class="waves-effect waves-teal {{ afClass }}">A4</a>
-        </div>
-        <div class="col s3">
-            <a (click)="box.value=''; setFilterSize('A3')" class="waves-effect waves-teal {{ atClass }}">A3</a>
-        </div>
-        <div class="col s3">
-            <a (click)="box.value=''; setFilterColour('Monochrome')" class="waves-effect waves-teal {{ bwClass }}">B/W</a>
-        </div>
-        <div class="col s3">
-          <a (click)="box.value=''; setFilterColour('Colour')" class="waves-effect waves-teal {{ clrClass }}">CLR</a>
-        </div>
+      <div class="row center">
+          <a (click)="box.value=''; setFilterSize('A4');" class="waves-effect waves-teal {{ afClass }} filter-button">A4</a>
+          <a (click)="box.value=''; setFilterSize('A3')" class="waves-effect waves-teal {{ atClass }} filter-button">A3</a>
+          <a (click)="box.value=''; setFilterColour('Monochrome')" class="waves-effect waves-teal {{ bwClass }} filter-button">B/W</a>
+          <a (click)="box.value=''; setFilterColour('Colour')" class="waves-effect waves-teal {{ clrClass }} filter-button">CLR</a>
       </div>
     </div>
 
@@ -67,7 +45,7 @@
             <span (click)="viewStatus($event, machine)"><strong>{{ machine.make }} {{ machine.model }}</strong></span>
             <span *ngIf="machine.badge" class="mbg"><strong>({{ machine.badge }})</strong></span>
             <a href="#" class="secondary-content">
-              <i (click)="editMachine($event, machine)" class="fa fa-pencil"></i>
+              <i *ngIf="auth.user | async" (click)="editMachine($event, machine)" class="fa fa-pencil"></i>
               <i *ngIf="editState && machineToEdit.id == machine.id" (click)="clearState()" class="fa fa-compress"></i>
             </a>
             <div *ngIf="viewState && machineToView.id == machine.id">
