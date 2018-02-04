@@ -2,27 +2,27 @@
   <div class="center title">
     <h3><strong>{{ title }}</strong></h3>
   </div>
-  <div class="col sm4 right">
+  <div class="col sm4 right nav-buttons">
     <a (click)="showSearch(); refreshFilters(); refreshResults()" class="waves-effect waves-light btn"><i class="fa fa-home"></i></a>
     <span *ngIf="auth.user | async">
     <a (click)="showAdd()" class="waves-effect waves-light btn"><i class="fa fa-plus"></i></a>
     </span>
     <span *ngIf="!(auth.user | async)">
-      <a (click)="auth.googleLogin()" class="waves-effect waves-light btn">Lo<i class="fa fa-google"></i>in</a>
+      <a (click)="auth.googleLogin()" class="waves-effect waves-light btn auth-button">Lo<i class="fa fa-google"></i>in</a>
     </span>
     <span *ngIf="auth.user | async">
-      <a (click)="auth.signOut()" class="waves-effect waves-light btn">Logout</a>
+      <a (click)="auth.signOut()" class="waves-effect waves-light btn auth-button">Logout</a>
     </span>
   </div>
 </div>
 
 <div>
   <div *ngIf="auth.user | async as user">
-    <span class="username teal-text right">Hello, {{ user.name }}</span>
+    <span class="username teal-text right">Signed in as: {{ user.name }}</span>
   </div>
 </div>
 
-<div *ngIf="add">
+<div *ngIf="add" class="add-machine">
   <app-add-machine></app-add-machine>
 </div>
 
@@ -30,7 +30,7 @@
     <input #box type="text" placeholder="Search..." class="searchFilter" (keyup)="onKey(box.value)" ng-model="inputValue">
 
     <div class="container filter">
-      <div class="row center">
+      <div class="container center">
           <a (click)="box.value=''; setFilterSize('A4');" class="waves-effect waves-teal {{ afClass }} filter-button">A4</a>
           <a (click)="box.value=''; setFilterSize('A3')" class="waves-effect waves-teal {{ atClass }} filter-button">A3</a>
           <a (click)="box.value=''; setFilterColour('Monochrome')" class="waves-effect waves-teal {{ bwClass }} filter-button">B/W</a>
@@ -41,10 +41,10 @@
     <div *ngIf="machines?.length > 0; else noMachines">
       <div *ngIf="results?.length > 0; else noResults">
         <ul *ngFor="let machine of results" class="collection">
-          <li class="collection-item">
+          <li class="collection-item" id="{{ machine.id }}">
             <span (click)="viewStatus($event, machine)"><strong>{{ machine.make }} {{ machine.model }}</strong></span>
             <span *ngIf="machine.badge" class="mbg"><strong>({{ machine.badge }})</strong></span>
-            <a href="#" class="secondary-content">
+            <a href="#{{ machine.id }}" class="secondary-content">
               <i *ngIf="auth.user | async" (click)="editMachine($event, machine)" class="fa fa-pencil"></i>
               <i *ngIf="editState && machineToEdit.id == machine.id" (click)="clearState()" class="fa fa-compress"></i>
             </a>
@@ -145,19 +145,28 @@
               </table>
             </div>
             <div *ngIf="editState && machineToEdit.id == machine.id">
-              <form (ngSubmit)="updateMachine(machine)">
+              <form (ngSubmit)="updateMachine(machine)" class="update-form">
                 <div class="row radio-buttons">
                   <div class="col s6">
-                      <input class="with-gap" [(ngModel)]="machine.size" name="size" value="A4" type="radio" id="a4" checked />
-                      <label for="a4">A4</label>
-                      <input class="with-gap" [(ngModel)]="machine.size" name="size" value ="A3" type="radio" id="a3" />
-                      <label for="a3">A3</label>
+                      <div class="sizes">
+                        <input class="with-gap" [(ngModel)]="machine.size" name="size" value="A4" type="radio" id="a4" />
+                        <label for="a4">A4</label>
+                      </div>
+                      <div class="sizes">
+                          <input class="with-gap" [(ngModel)]="machine.size" name="size" value ="A3" type="radio" id="a3" />
+                          <label for="a3">A3</label>
+                      </div>
+                      
                   </div>
                   <div class="col s6">
-                      <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Colour" type="radio" id="colour" checked />
-                      <label for="colour">Colour</label>
-                      <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Monochrome" type="radio" id="mono" />
-                      <label for="mono">Mono</label>
+                    <div class="sizes">
+                        <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Colour" type="radio" id="colour" />
+                        <label for="colour">Colour</label>
+                    </div>
+                    <div class="sizes">
+                        <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Monochrome" type="radio" id="mono" />
+                        <label for="mono">Mono</label>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -253,8 +262,8 @@
                         <input type="text" placeholder="Observations" [(ngModel)]="machine.observations" name="observations">
                       </div>
                 </div> 
-                <input type="submit" value="Update Machine" class="btn orange">
-                <button (click)="deleteMachine($event, machine)" class="btn red">Delete Machine</button>
+                <button type="submit" class="btn orange update-button">Update <span class="btn-text-machine">Machine</span></button>
+                <button (click)="deleteMachine($event, machine)" class="btn red delete-button">Delete <span class="btn-text-machine">Machine</span></button>
               </form>
             </div>
           </li>

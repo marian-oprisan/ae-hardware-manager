@@ -4,16 +4,24 @@
     <form (ngSubmit)="addMachine()" class="col-s6">
       <div class="row radio-buttons">
         <div class="col s6">
-            <input class="with-gap" [(ngModel)]="machine.size" name="size" value="A4" type="radio" id="a4" checked />
-            <label for="a4">A4</label>
-            <input class="with-gap" [(ngModel)]="machine.size" name="size" value ="A3" type="radio" id="a3" />
-            <label for="a3">A3</label>
+            <div class="sizes">
+              <input class="with-gap" [(ngModel)]="machine.size" name="size" value="A4" type="radio" id="a4" checked />
+              <label for="a4">A4</label>
+            </div>
+            <div class="sizes">
+              <input class="with-gap" [(ngModel)]="machine.size" name="size" value ="A3" type="radio" id="a3" />
+              <label for="a3">A3</label>
+            </div>
         </div>
         <div class="col s6">
+          <div class="sizes">
             <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Colour" type="radio" id="colour" checked />
             <label for="colour">Colour</label>
+          </div>
+          <div class="sizes">
             <input class="with-gap" [(ngModel)]="machine.colour" name="colour" value="Monochrome" type="radio" id="mono" />
             <label for="mono">Mono</label>
+          </div>
         </div>
       </div>
       <div class="row">

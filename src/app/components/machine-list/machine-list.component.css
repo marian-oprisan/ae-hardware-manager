@@ -1,6 +1,5 @@
 .nav-buttons {
     margin-top: 10px;
-    margin-right: 20px;
 }
 
 .title {
@@ -9,16 +8,31 @@
     margin-left: 15%;
 }
 
+.add-machine {
+    margin-top: 45px;
+}
+
 .bdg {
     margin-left: 15px;
 }
 
+.fa-compress {
+    margin-left: 15px;
+}
+
+.fa {
+    font-size: 1.5rem;
+}
+
+.collection-item {
+    font-size: 1.2rem;
+}
 .filter {
     width: 100%;
     margin-bottom: 10px;
 }
 
-.col.s3 > .btn-flat {
+.btn-flat {
     font-weight: 600;
 }
 
@@ -26,7 +40,24 @@
     margin: 5px;
 }
 
-@media only screen and (max-width : 500px)  {
+button.red {
+    margin-left: 5px;
+}
+
+.update-button {
+    margin-right: 10%;
+}
+
+.sizes {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.itemss {
+    color: #009688;
+}
+
+@media only screen and (max-width : 520px)  {
     .title {
         display: block;
         font-size: 1.5rem;
@@ -36,5 +67,36 @@
     }
     .sectioned-brand {
         visibility: hidden;
+    }
+    .sizes {
+        display: block;
+    }
+    .update-button,
+    .delete-button {
+        max-width: 100px;
+        text-overflow: ellipsis;
+    }
+    .btn-text-machine {
+        display: hidden;
+    }
+}
+
+@media only screen and (max-width : 320px)  {
+    .update-button,
+    .delete-button {
+        margin: 0 auto;
+        max-width: 100px;
+        margin-top: 5px;
+    }
+    .btn-text-machine {
+        display: hidden;
+    }
+    .auth-button {
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .nav-buttons {
+        margin: 0 auto;
     }
 }
