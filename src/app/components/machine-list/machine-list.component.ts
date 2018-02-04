@@ -195,6 +195,7 @@ export class MachineListComponent implements OnInit {
   }
 
   viewStatus(event, machine) {
+    this.clearState();
     this.viewState = !this.viewState;
     this.machineToView = machine;
   }

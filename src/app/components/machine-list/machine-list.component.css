@@ -79,6 +79,9 @@ button.red {
     .btn-text-machine {
         display: hidden;
     }
+    .filter-button {
+        min-width: 35%;
+    }
 }
 
 @media only screen and (max-width : 320px)  {
