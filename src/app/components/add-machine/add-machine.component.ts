@@ -68,5 +68,6 @@ export class AddMachineComponent implements OnInit {
       this.machine.hdd = '';
       this.machine.observations = '';
     }
+    window.scrollTo(0, 0);
   }
 }
