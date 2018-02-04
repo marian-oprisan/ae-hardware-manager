@@ -195,7 +195,7 @@ export class MachineListComponent implements OnInit {
   }
 
   viewStatus(event, machine) {
-    this.clearState();
+    this.editState = false;
     this.viewState = !this.viewState;
     this.machineToView = machine;
   }
@@ -205,5 +205,10 @@ export class MachineListComponent implements OnInit {
       this.clearState();
       this.machineService.deleteMAchine(machine);
     }
+  }
+
+  signOut() {
+    this.showSearch();
+    this.auth.signOut();
   }
 }

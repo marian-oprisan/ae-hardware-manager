@@ -11,7 +11,7 @@
       <a (click)="auth.googleLogin()" class="waves-effect waves-light btn auth-button">Lo<i class="fa fa-google"></i>in</a>
     </span>
     <span *ngIf="auth.user | async">
-      <a (click)="auth.signOut()" class="waves-effect waves-light btn auth-button">Logout</a>
+      <a (click)="signOut();" class="waves-effect waves-light btn auth-button">Logout</a>
     </span>
   </div>
 </div>
@@ -52,7 +52,7 @@
               <div class="collection">
             
               </div>
-              <div class="header">{{ machineToView.size }}, {{ machineToView.colour }} machine</div>
+              <div class="header-description">{{ machineToView.size }}, {{ machineToView.colour }} machine</div>
               <table class="striped">
                 <thead>
                   <tr>

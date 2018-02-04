@@ -27,6 +27,12 @@
 .collection-item {
     font-size: 1.2rem;
 }
+
+.header-description {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
 .filter {
     width: 100%;
     margin-bottom: 10px;
