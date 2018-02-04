@@ -1,5 +1,5 @@
 nav {
-    background: #26a69a;
+    /*background: #26a69a;*/
     text-align: center;
 }
 
@@ -10,7 +10,7 @@ nav {
 }
 
 .title {
-    color: #26A69A;
+    /*color: #26A69A;*/
     display: inline-block;
     margin-left: 15%;
 }

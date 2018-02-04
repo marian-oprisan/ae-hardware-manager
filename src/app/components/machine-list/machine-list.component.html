@@ -16,7 +16,25 @@
 <div *ngIf="search">
     <input #box type="text" placeholder="Search..." class="searchFilter" (keyup)="onKey(box.value)" ng-model="inputValue">
 
+    <div class="container filter">
+      <div class="row">
+        <div class="col s3">
+          <a (click)="filterMachinesSize('A4')" class="waves-effect waves-teal btn-flat">A4</a>
+        </div>
+        <div class="col s3">
+            <a (click)="filterMachinesSize('A3')" class="waves-effect waves-teal btn-flat">A3</a>
+        </div>
+        <div class="col s3">
+            <a (click)="filterMachinesColor('mono')" class="waves-effect waves-teal btn-flat">B/W</a>
+        </div>
+        <div class="col s3">
+          <a (click)="filterMachinesColor('color')" class="waves-effect waves-teal btn-flat">CLR</a>
+        </div>
+      </div>
+    </div>
+
     <div *ngIf="machines?.length > 0; else noMachines">
+      <div *ngIf="results?.length > 0; else noResults">
         <ul *ngFor="let machine of results" class="collection">
           <li class="collection-item">
             <span (click)="viewStatus($event, machine)"><strong>{{ machine.make }} {{ machine.model }}</strong></span>
@@ -236,6 +254,7 @@
             </div>
           </li>
         </ul>
+        </div>
       </div>
       
       <ng-template #noMachines>
@@ -250,5 +269,9 @@
                 </div>
               </div>
             </div>
+      </ng-template>
+
+      <ng-template #noResults>
+          <h5 class="teal-text">I've got nothing on that</h5>
       </ng-template>
 </div>
