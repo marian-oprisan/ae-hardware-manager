@@ -12,6 +12,10 @@ import { AddMachineComponent } from './components/add-machine/add-machine.compon
 import { FormsModule } from '@angular/forms';
 import { ViewService } from './services/view.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { CoreModule } from './core/core.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AuthService } from './core/auth.service';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -19,15 +23,15 @@ import { FooterComponent } from './components/footer/footer.component';
     MachineListComponent,
     NavbarComponent,
     AddMachineComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase, 'ae-hardware-manager'),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [MachineService, ViewService],
+  providers: [MachineService, ViewService, AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

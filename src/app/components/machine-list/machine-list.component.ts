@@ -3,6 +3,7 @@ import { MachineService } from '../../services/machine.service';
 import { Machine } from '../../models/machine';
 import { ViewService } from '../../services/view.service';
 import { NgClass } from '@angular/common';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-machine-list',
@@ -29,7 +30,7 @@ export class MachineListComponent implements OnInit {
   sizeFilter: string;
   colourFilter: string;
 
-  constructor(private machineService: MachineService, public viewService: ViewService) {
+  constructor(private machineService: MachineService, public viewService: ViewService, public auth: AuthService) {
   }
 
   ngOnInit() {
